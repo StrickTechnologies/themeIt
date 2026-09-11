@@ -60,9 +60,14 @@ var themeIt = new class
 			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event =>
 			{
 				console.log("On O/S change");
-				const newColorScheme = event.matches ? this.#setTheme(this.#themes[1], false) : this.#setTheme(this.#themes[0], false);
-				this.#reload();
-				// alert("foo");
+				if (!this.#hasThemePref())
+				{
+					const newColorScheme = event.matches ? this.#setTheme(this.#themes[1], false) : this.#setTheme(this.#themes[0], false);
+					console.log("On O/S change, setting to " + newColorScheme);
+					this.#reload();
+				}
+				else
+				{ console.log("On O/S change, NOT overriding saved preference"); }
 			});
 		}
 
@@ -231,11 +236,14 @@ var themeIt = new class
 
 	//#region Local Storage
 
-	#saveThemePref(theme)
-	{ localStorage.setItem(this.#localStorageKey, theme); }
-
 	#getThemePref()
 	{ return localStorage.getItem(this.#localStorageKey); }
+
+	#hasThemePref()
+	{ return this.#getThemePref() != null; }
+
+	#saveThemePref(theme)
+	{ localStorage.setItem(this.#localStorageKey, theme); }
 
 	#clearThemePref()
 	{ localStorage.removeItem(this.#localStorageKey); }
