@@ -1,5 +1,5 @@
 # themeIt.js
-Easily manage dark/light themes with Pico CSS and Bootstrap 5.30+.
+Easily manage light/dark themes with Pico CSS and Bootstrap 5.30+.
 
 ## Quick Start
 Load themeIt.js at the top of the `<head>` section of your document. 

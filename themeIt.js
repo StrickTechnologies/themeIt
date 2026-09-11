@@ -1,5 +1,18 @@
-﻿var themeIt = new class
+﻿/*
+   themeIt v0.9.0
+   Easily manage light/dark themes with Pico CSS and Bootstrap 5.30+.
+
+   Copyright (c) 2026 Strick Technologies, LLC.
+   Licensed under the MIT License. See LICENSE file in the project root for details.
+*/
+
+
+var themeIt = new class
 {
+	#libName = "themeIt";
+	#version = "0.9.0";
+	#copyright = "Copyright (c) 2026 Strick Technologies, LLC. Licensed under the MIT License.";
+
 	#themes = ['light', 'dark'];
 	#alwaysSetTheme = false;
 	#listenForOSChange = true;
@@ -56,6 +69,12 @@
 		document.addEventListener("DOMContentLoaded", () =>
 		{ this.#addSwitcherListeners(this.#getSwitchers(this.#switcherAttributeName)); });
 	}
+
+	about()
+	{
+		return `${this.#libName} v${this.#version} - ${this.#copyright}`;
+	}
+
 
 	#readOptions()
 	{
