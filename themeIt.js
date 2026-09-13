@@ -218,7 +218,7 @@ var themeIt = new class
 	#setPico()
 	{
 		this.#themeAttrib = "data-theme";
-		this.#alwaysSetTheme = false;
+		this.#alwaysSetTheme = true;
 		this.#listenForOSChange = true;
 		this.#reloadOnThemeChange = false;
 	}
