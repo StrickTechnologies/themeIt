@@ -140,8 +140,8 @@ var themeIt = new class
 		{
 			el.addEventListener(event, (event) =>
 			{
-				// console.log("switch " + event.target)
-				this.switchTheme(event.target.getAttribute(this.#switcherAttributeName));
+				// console.log("switch " + event.currentTarget)
+				this.switchTheme(event.currentTarget.getAttribute(this.#switcherAttributeName));
 			});
 		});
 	}
