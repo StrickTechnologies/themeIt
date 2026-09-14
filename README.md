@@ -148,7 +148,7 @@ or use the `theme-change` event to do work after the theme is changed.
 	const mySwitchers = document.querySelectorAll(`[${mySwitcherAttrib}]`);
 	mySwitchers.forEach(el => {
 		el.addEventListener("click", function(event) {
-			const newTheme = event.target.getAttribute(mySwitcherAttrib);
+			const newTheme = event.currentTarget.getAttribute(mySwitcherAttrib);
 			themeIt.switchTheme(newTheme);
 			//do other work here...
 			//  Alternatively, the theme-change event can also be used (see docs)
