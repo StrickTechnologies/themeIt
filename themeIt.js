@@ -59,15 +59,15 @@ var themeIt = new class
 		{
 			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event =>
 			{
-				console.log("On O/S change");
+				// console.log("On O/S change");
 				if (!this.#hasThemePref())
 				{
 					const newColorScheme = event.matches ? this.#setTheme(this.#themes[1], false) : this.#setTheme(this.#themes[0], false);
-					console.log("On O/S change, setting to " + newColorScheme);
+					//console.log("On O/S change, setting to " + newColorScheme);
 					this.#reload();
 				}
-				else
-				{ console.log("On O/S change, NOT overriding saved preference"); }
+				//else
+				//{ console.log("On O/S change, NOT overriding saved preference"); }
 			});
 		}
 
@@ -87,14 +87,14 @@ var themeIt = new class
 		if (opt)
 		{
 			this.#reloadOnThemeChange = opt.toLowerCase() === "true";
-			console.log(`set #reloadOnThemeChange to ${opt}`);
+			//	(`set #reloadOnThemeChange to ${opt}`);
 		}
 
 		opt = document.currentScript.getAttribute(this.#caOsChange)
 		if (opt)
 		{
 			this.#listenForOSChange = opt.toLowerCase() === "true";
-			console.log(`set #listenForOSChange to ${opt}`);
+			// console.log(`set #listenForOSChange to ${opt}`);
 		}
 	}
 
@@ -124,8 +124,8 @@ var themeIt = new class
 			if (save)
 			{ this.#saveThemePref(theme); }
 		}
-		else
-		{ console.log("switchTheme: invalid theme: " + theme); }
+		//else
+		//{ console.log("switchTheme: invalid theme: " + theme); }
 	}
 
 
@@ -175,7 +175,7 @@ var themeIt = new class
 
 	#setTheme(theme)
 	{
-		console.log("themeIt.setTheme " + theme);
+		// console.log("themeIt.setTheme " + theme);
 		if (!this.#isValidTheme(theme))
 		{ return; }
 
@@ -188,7 +188,7 @@ var themeIt = new class
 
 	#raiseChangeEvent(theme)
 	{
-		console.log("raising theme-change event " + theme);
+		//console.log("raising theme-change event " + theme);
 		document.documentElement.dispatchEvent(new CustomEvent('theme-change', {
 			bubbles: true,
 			detail: { theme: theme }
@@ -199,11 +199,11 @@ var themeIt = new class
 	{
 		if (this.#reloadOnThemeChange)
 		{
-			console.log("reloading page");
+			// console.log("reloading page");
 			location.reload();
 		}
-		else
-		{ console.log("NOT reloading page"); }
+		// else
+		// { console.log("NOT reloading page"); }
 	}
 
 
