@@ -118,9 +118,14 @@ var themeIt = new class
 			return;
 		}
 
-		this.#setTheme(theme);
-		if (save)
-		{ this.#saveThemePref(theme); }
+		if (this.#isValidTheme(theme))
+		{
+			this.#setTheme(theme);
+			if (save)
+			{ this.#saveThemePref(theme); }
+		}
+		else
+		{ console.log("switchTheme: invalid theme: " + theme); }
 	}
 
 
@@ -171,12 +176,15 @@ var themeIt = new class
 	#setTheme(theme)
 	{
 		console.log("themeIt.setTheme " + theme);
-		if (!this.#themes.includes(theme))
+		if (!this.#isValidTheme(theme))
 		{ return; }
 
 		document.documentElement.setAttribute(this.#themeAttrib, theme);
 		this.#raiseChangeEvent(theme);
 	}
+
+	#isValidTheme(theme)
+	{ return this.#themes.includes(theme); }
 
 	#raiseChangeEvent(theme)
 	{
