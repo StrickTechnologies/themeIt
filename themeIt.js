@@ -183,7 +183,7 @@ var themeIt = new class
 	#setDefaultTheme()
 	{
 		//clear any existing theme preference
-		this.#clearThemePref();
+		this.#removeThemePref();
 
 		if (this.#alwaysSetTheme)
 		{ this.#setThemeAttribute(this.#getBrowserTheme()); }
@@ -278,7 +278,7 @@ var themeIt = new class
 	#saveThemePref(theme)
 	{ localStorage.setItem(this.#localStorageKey, theme); }
 
-	#clearThemePref()
+	#removeThemePref()
 	{ localStorage.removeItem(this.#localStorageKey); }
 
 	//#endregion Local Storage
