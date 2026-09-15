@@ -98,31 +98,23 @@ var themeIt = new class
 		}
 	}
 
+
 	switchTheme(theme)
 	{
-		let save = true;
+		if (theme === 'default')
+		{
+			this.#setDefaultTheme();
+			return;
+		}
+
 
 		if (theme === 'toggle')
 		{ theme = this.#toggleTheme(this.#getCurrentTheme()); }
 
-		if (theme === 'default')
-		{
-			theme = this.#getBrowserTheme();
-			this.#clearThemePref();
-			if (this.#alwaysSetTheme)
-			{ this.#setThemeAttribute(theme); }
-			else
-			{ this.#removeThemeAttribute(); }
-			this.#reload();
-			this.#raiseChangeEvent(this.#getCurrentTheme());
-			return;
-		}
-
 		if (this.#isValidTheme(theme))
 		{
 			this.#setTheme(theme);
-			if (save)
-			{ this.#saveThemePref(theme); }
+			this.#saveThemePref(theme);
 		}
 		//else
 		//{ console.log("switchTheme: invalid theme: " + theme); }
@@ -186,6 +178,20 @@ var themeIt = new class
 
 		this.#setThemeAttribute(theme);
 		this.#raiseChangeEvent(theme);
+	}
+
+	#setDefaultTheme()
+	{
+		//clear any existing theme preference
+		this.#clearThemePref();
+
+		if (this.#alwaysSetTheme)
+		{ this.#setThemeAttribute(this.#getBrowserTheme()); }
+		else
+		{ this.#removeThemeAttribute(); }
+
+		this.#raiseChangeEvent(this.#getCurrentTheme());
+		this.#reload();
 	}
 
 	#isValidTheme(theme)
