@@ -52,7 +52,7 @@ var themeIt = new class
 		{
 			//No stored preference.
 			//  If we always need to set the theme, check user's preference via media query
-			this.#setTheme((window.matchMedia("(prefers-color-scheme: dark)").matches) ? this.#themes[1] : this.#themes[0]);
+			this.#setTheme(this.#getBrowserTheme());
 		}
 
 		if (this.#listenForOSChange)
@@ -107,7 +107,7 @@ var themeIt = new class
 
 		if (theme === 'default')
 		{
-			theme = this.#themes[0];
+			theme = this.#getBrowserTheme();
 			this.#clearThemePref();
 			if (this.#alwaysSetTheme)
 			{ document.documentElement.setAttribute(this.#themeAttrib, theme); }
@@ -169,6 +169,11 @@ var themeIt = new class
 			return theme;
 		}
 
+		return this.#getBrowserTheme();
+	}
+
+	#getBrowserTheme()
+	{
 		// Check current theme via media query
 		return (window.matchMedia("(prefers-color-scheme: dark)").matches) ? this.#themes[1] : this.#themes[0];
 	}
