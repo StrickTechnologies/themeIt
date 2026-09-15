@@ -123,10 +123,27 @@ browser or O/S. The default value for both Pico and BS is `true`.
 
 ## Additional Features
 
+### Toggle switcher button
+You can use a toggle switcher button to allow users to switch between light and dark themes. 
+To toggle an icon based on the current theme, you can use the following CSS. 
+The icons will be hidden or shown based on the current theme.
+
+```css
+html[data-theme="dark"] .theme-icon-light { display: none !important }
+html[data-theme="light"] .theme-icon-dark { display: none !important }
+```
+```Html
+<button data-theme-switcher="toggle" title="Toggle between Light/Dark themes">
+	<img src="/images/icons/sun-fill.svg" class="theme-icon-light" />
+	<img src="/images/icons/moon-stars-fill.svg" class="theme-icon-dark" />
+	Toggle
+</button>
+```
+
 ### Retrieve the current theme
 You can retrieve the current theme using themeIt's `getActiveTheme()` method. 
 It returns an object with the current theme and a boolean indicating whether 
-the theme is the browser default. 
+the theme is the browser default. See also the [Default theme attribute](#default-theme-attribute).
 
 Property         | Type    | Description
 -----------------|---------|------------
@@ -180,3 +197,21 @@ or use the `theme-change` event to do work after the theme is changed.
 	});
 </script>
 ```
+
+### Default theme attribute
+themeIt adds a `data-theme-default` attribute to the `<html>` tag. The value of 
+this attribute indicates whether the currently active theme is the browser default. 
+The value will be `true` if the user has **not** explicitly set a theme preference, 
+and `false` if the user has set a theme preference (even if that preference is the 
+same as the browser default). 
+
+You can use this attribute in your CSS to style elements differently based on whether 
+the active theme is the browser default or not.
+
+For example, to hide the "default" theme switcher button when the active theme is the 
+browser default, you can use the following CSS:
+
+```css
+html[data-theme-default="true"] [data-theme-switcher="default"] { display: none !important }
+```
+See also [Retrieve the current theme](#retrieve-the-current-theme).

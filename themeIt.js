@@ -62,7 +62,7 @@ var themeIt = new class
 				// console.log("On O/S change");
 				if (!this.#hasThemePref())
 				{
-					const newColorScheme = event.matches ? this.#setTheme(this.#themes[1], false) : this.#setTheme(this.#themes[0], false);
+					const newColorScheme = event.matches ? this.#setTheme(this.#themes[1]) : this.#setTheme(this.#themes[0]);
 					//console.log("On O/S change, setting to " + newColorScheme);
 					this.#reload();
 				}
@@ -113,8 +113,8 @@ var themeIt = new class
 
 		if (this.#isValidTheme(theme))
 		{
-			this.#setTheme(theme);
 			this.#saveThemePref(theme);
+			this.#setTheme(theme);
 		}
 		//else
 		//{ console.log("switchTheme: invalid theme: " + theme); }
@@ -233,7 +233,10 @@ var themeIt = new class
 	{ return document.documentElement.getAttribute(this.#themeAttrib); }
 
 	#setThemeAttribute(value)
-	{ document.documentElement.setAttribute(this.#themeAttrib, value); }
+	{
+		document.documentElement.setAttribute(this.#themeAttrib, value);
+		document.documentElement.setAttribute("data-theme-default", !this.#hasThemePref());
+	}
 
 	#removeThemeAttribute()
 	{ document.documentElement.removeAttribute(this.#themeAttrib); }
