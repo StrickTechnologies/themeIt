@@ -87,7 +87,7 @@ var themeIt = new class
 		if (opt)
 		{
 			this.#reloadOnThemeChange = opt.toLowerCase() === "true";
-			//	(`set #reloadOnThemeChange to ${opt}`);
+			// console.log(`set #reloadOnThemeChange to ${opt}`);
 		}
 
 		opt = document.currentScript.getAttribute(this.#caOsChange)
@@ -127,12 +127,7 @@ var themeIt = new class
 	 *     isBrowserDefault (boolean): True if the current theme is the browser default (i.e., not explicitly set by the user), false otherwise.
 	*/
 	getActiveTheme()
-	{
-		// const theme = this.#getCurrentThemeName();
-		// const isBrowserDefault = !this.#hasThemePref() && (theme === this.#getBrowserTheme());
-		// return { theme: theme, isBrowserDefault: isBrowserDefault };
-		return { theme: this.#getCurrentThemeName(), isBrowserDefault: !this.#hasThemePref() };
-	}
+	{ return { theme: this.#getCurrentThemeName(), isBrowserDefault: !this.#hasThemePref() }; }
 
 
 	//#region Switchers
