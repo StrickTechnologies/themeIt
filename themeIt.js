@@ -110,9 +110,9 @@ var themeIt = new class
 			theme = this.#getBrowserTheme();
 			this.#clearThemePref();
 			if (this.#alwaysSetTheme)
-			{ document.documentElement.setAttribute(this.#themeAttrib, theme); }
+			{ this.#setThemeAttribute(theme); }
 			else
-			{ document.documentElement.removeAttribute(this.#themeAttrib); }
+			{ this.#removeThemeAttribute(); }
 			this.#reload();
 			this.#raiseChangeEvent(this.#getCurrentTheme());
 			return;
@@ -161,7 +161,7 @@ var themeIt = new class
 
 	#getCurrentTheme()
 	{
-		let theme = document.documentElement.getAttribute(this.#themeAttrib);
+		let theme = this.#getThemeAttribute();
 		// console.log(theme);
 
 		if (theme != null)
@@ -184,7 +184,7 @@ var themeIt = new class
 		if (!this.#isValidTheme(theme))
 		{ return; }
 
-		document.documentElement.setAttribute(this.#themeAttrib, theme);
+		this.#setThemeAttribute(theme);
 		this.#raiseChangeEvent(theme);
 	}
 
@@ -210,6 +210,20 @@ var themeIt = new class
 		// else
 		// { console.log("NOT reloading page"); }
 	}
+
+
+	//#region Document Theme Attribute
+
+	#getThemeAttribute(value)
+	{ return document.documentElement.getAttribute(this.#themeAttrib); }
+
+	#setThemeAttribute(value)
+	{ document.documentElement.setAttribute(this.#themeAttrib, value); }
+
+	#removeThemeAttribute()
+	{ document.documentElement.removeAttribute(this.#themeAttrib); }
+
+	//#endregion Document Theme Attribute
 
 
 	//#region Framework
