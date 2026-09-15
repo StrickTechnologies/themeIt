@@ -121,7 +121,31 @@ browser or O/S. The default value for both Pico and BS is `true`.
 <script src="/themeIt.js" data-framework="pico" data-listen-os-change="false"></script>
 ```
 
-## Programmatic theme change
+## Additional Features
+
+### Retrieve the current theme
+You can retrieve the current theme using themeIt's `getActiveTheme()` method. 
+It returns an object with the current theme and a boolean indicating whether 
+the theme is the browser default. 
+
+Property         | Type    | Description
+-----------------|---------|------------
+theme            | string  | The current theme (e.g. light, dark)
+isBrowserDefault | boolean | True if the current theme is the browser default (i.e., not explicitly set by the user), false otherwise.
+
+```Html
+<button id="showTheme">Show Current Theme</button>
+...
+<script type="module">
+	document.getElementById("showTheme").addEventListener("click", function(event)
+	{
+		const activeTheme = themeIt.getActiveTheme();
+		console.log(`Current theme is: ${activeTheme.theme} ${activeTheme.isBrowserDefault ? "(browser default)" : ""}`);
+	});
+</script>
+```
+
+### Programmatic theme change
 You can also change the theme programmatically using themeIt's `switchTheme()` 
 method. The `switchTheme()` method takes a single parameter, which is the
 theme to switch to. Valid values are the same as the `data-theme-switcher` 

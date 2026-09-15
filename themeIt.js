@@ -120,6 +120,20 @@ var themeIt = new class
 		//{ console.log("switchTheme: invalid theme: " + theme); }
 	}
 
+	/**
+	 * Gets the currently active theme.
+	 * @returns {Object} An anonymous object with the current theme and a boolean indicating whether the theme is the browser default. 
+	 *     theme (string): The current theme.
+	 *     isBrowserDefault (boolean): True if the current theme is the browser default (i.e., not explicitly set by the user), false otherwise.
+	*/
+	getActiveTheme()
+	{
+		// const theme = this.#getCurrentThemeName();
+		// const isBrowserDefault = !this.#hasThemePref() && (theme === this.#getBrowserTheme());
+		// return { theme: theme, isBrowserDefault: isBrowserDefault };
+		return { theme: this.#getCurrentThemeName(), isBrowserDefault: !this.#hasThemePref() };
+	}
+
 
 	//#region Switchers
 
