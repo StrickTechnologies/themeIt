@@ -109,7 +109,7 @@ var themeIt = new class
 
 
 		if (theme === 'toggle')
-		{ theme = this.#toggleTheme(this.#getCurrentTheme()); }
+		{ theme = this.#toggleTheme(this.#getCurrentThemeName()); }
 
 		if (this.#isValidTheme(theme))
 		{
@@ -151,7 +151,7 @@ var themeIt = new class
 		return (theme === this.#themes[0]) ? this.#themes[1] : this.#themes[0];
 	}
 
-	#getCurrentTheme()
+	#getCurrentThemeName()
 	{
 		let theme = this.#getThemeAttribute();
 		// console.log(theme);
@@ -190,7 +190,7 @@ var themeIt = new class
 		else
 		{ this.#removeThemeAttribute(); }
 
-		this.#raiseChangeEvent(this.#getCurrentTheme());
+		this.#raiseChangeEvent(this.#getCurrentThemeName());
 		this.#reload();
 	}
 
