@@ -220,7 +220,7 @@ var themeIt = new class
 
 	//#region Document Theme Attribute
 
-	#getThemeAttribute(value)
+	#getThemeAttribute()
 	{ return document.documentElement.getAttribute(this.#themeAttrib); }
 
 	#setThemeAttribute(value)
